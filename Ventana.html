@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventana Normanda Interactiva</title>
+    <link rel="stylesheet" href="css/ventanaEstilo.css">
+</head>
+
+
+<body>
+<!--     Pensemos en una tabla que tenga en la primer fila el titulo y la segunda fila 3 columnas, mostrando asi 
+    el canvas, las opciones y los anuncios de emergencia a un costado de cada opcion. -->
+    <div id="contenedorTabla" style="width:800px; float:left;">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <h1>Ventana Normanda</h1>
+                    </th>
+                    <th>
+                        <h1>Inputs</h1>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <canvas width="500" height="500" id="lienzo">No se pudo mostrar el área de trabajo</canvas>
+                </td>
+                <td>
+                    <p>Perimetro: <input type="number" min="0" max="1000" id="per"  step="1"></p>
+                    <p id="mostrarperimetro"></p>
+                    <p id="mostrararea"></p>
+                    <p>Color: <input type="color" id="Color"></p>
+                    <p>Base: <input type="range" min="0" max="500" id="BaseDes" step="0.01"></p>
+                    <p id="mostrarbase"></p>
+                    <p>Altura: <input type="range" min="0" max="500" id="altdes"  step="0.01"></p>
+                    <p id="mostraraltura"></p>
+                    <button id="boton">Dibujar y generar Tabla</button>
+                    <button id="resetea">Reset</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div>
+        <table id="tabla">
+            <tbody id="TBody">
+            </tbody>
+          </table>
+    </div>
+
+    <script src="js/ventanaAcciones.js"></script>
+</body>
+
+</html>
+
+   
+</body>
+
+</html>

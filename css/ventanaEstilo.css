@@ -39,3 +39,6 @@ canvas:hover{
     background-color: blue;
 }
 
+#maxArea{
+    font-weight: bold;
+}

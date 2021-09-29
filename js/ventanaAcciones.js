@@ -10,6 +10,7 @@ const mostrarbase=document.getElementById("mostrarbase");
 const mostraraltura=document.getElementById("mostraraltura");
 const mostrarperimetro=document.getElementById("mostrarperimetro");
 const mostrararea=document.getElementById("mostrararea");
+const maxArea=document.getElementById("maxArea");
 let tabla=document.getElementById("tabla");
 
 
@@ -45,7 +46,7 @@ let calcArea = function () {
     let Base = parseFloat(basedes.value); // Ya estas variables tienen la informacion que me interesa.
     let Alt = parseFloat(altdes.value);
     let Area = Base*Alt+(Math.PI-4)*(Base*Base)/8;
-    mostrararea.innerText=`Area: ${Area} px^2`;
+    mostrararea.innerText=`Area: ${Area.toFixed(2)} px^2`;
 }
 
 // Funcion que calcula el perimetro
@@ -54,7 +55,7 @@ let calcPer = function () {
     let Base = parseFloat(basedes.value); // Ya estas variables tienen la informacion que me interesa.
     let Alt = parseFloat(altdes.value);
     let peri= 2*Alt+(Math.PI*Base/2);
-    mostrarperimetro.innerText=`Perimetro: ${peri} px`;
+    mostrarperimetro.innerText=`Perimetro: ${peri.toFixed(2)} px`;
 }
 
 // Lo que sucede con el deslizador Base y altura, idea de Pau para relacionar ambos deslizadores
@@ -85,6 +86,7 @@ function generaTabla() {
     let TBody = document.getElementById("TBody");
     let tabla = document.createElement("table");
     let tblBody = document.createElement("tbody");
+    let areas=[];
 
     // creamos las celdas con un ciclo for
     for (let i = 100; i < 500; i++) {
@@ -101,8 +103,10 @@ function generaTabla() {
             let ar=i*a+(Math.PI-4)*(i*i)/8;
             // y creamos los nodo de texto, 
             let textoCelda = document.createTextNode("Base: "+i);
-            let textoCelda2 = document.createTextNode("Altura: "+a);
-            let textoCelda3 = document.createTextNode("Area: "+ar);
+            let textoCelda2 = document.createTextNode("Altura: "+a.toFixed(2));
+            let textoCelda3 = document.createTextNode("Area: "+ar.toFixed(2));
+            // Insertamos en cada iteracion un valor correspondiente del array que muestra las areas.
+            areas.push(ar);
             // Insertamos el texto en la celda respectiva td
             celda.appendChild(textoCelda);
             celda2.appendChild(textoCelda2);
@@ -119,6 +123,9 @@ function generaTabla() {
     tabla.appendChild(tblBody);
     TBody.appendChild(tabla);
     tabla.setAttribute("border", "1");
+    // Sacamos en un parrafo la informacion del valor minimo del area
+    let maximoA=Math.max(...areas);  // En la documentacion dice que es un nuevo spread operator que permite separar un array en valores.
+    maxArea.innerText=`Area máxima: ${maximoA.toFixed(2)}`;
 }
 
 // Funcion que borra la tabla, borrando los hijos, se desatara el evento cuando cambie la entrada

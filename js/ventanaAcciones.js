@@ -22,8 +22,11 @@ let VentFun = function(xInicial,yInicial,base,alt,Color){
     ctx.lineTo(xInicial+base,yInicial);
     ctx.lineTo(xInicial+base,yInicial-(alt-base/2));
     ctx.arc(xInicial+(base/2),yInicial-(alt-base/2),base/2,0,Math.PI,true);
-    ctx.lineTo(xInicial,yInicial);
+    //ctx.lineTo(xInicial,yInicial);
+    ctx.fillStyle= Color;
+    ctx.closePath();
     ctx.stroke();
+    ctx.fill(); // Tuve que poner .fill(), esto es primero declarar el color y luego mandar a rellenar
 }
 
 // Funcion que borra el canvas
@@ -33,7 +36,7 @@ function borrarCanvas(){
 
 // Funcion que traza la ventana con los valores fijados
 let dibujar= function(){
-    let xInicial = 20; // fijamos el origen de coordenadas en la parte inderior izquierda.
+    let xInicial = 20; // fijamos el origen de coordenadas en la parte inferior izquierda.
     let yini = 490;
     let Base = parseFloat(basedes.value); // Ya estas variables tienen la informacion que me interesa.
     let Alt = parseFloat(altdes.value);
@@ -71,13 +74,13 @@ basedes.addEventListener("input",()=>{       //funcion evento que asocia ambos d
     let Base = parseFloat(basedes.value);
     let per = parseInt(entradaper.value);
     altdes.value=per/2-(Math.PI*Base)/4;
-    mostraraltura.innerText=altdes.value;
+    mostraraltura.innerText=`Altura: ${altdes.value}`;
 })
 altdes.addEventListener("input",()=>{
     let Alt = parseFloat(altdes.value);
     let per = parseInt(entradaper.value);
     basedes.value=(2*per-4*Alt)/Math.PI;
-    mostrarbase.innerText=basedes.value;
+    mostrarbase.innerText=`Base: ${basedes.value}`;
 })
 
 
